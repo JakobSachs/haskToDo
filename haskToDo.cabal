@@ -14,15 +14,14 @@ maintainer:          jakobsachs1999@gmail.com
 -- copyright:
 -- category:
 build-type:          Simple
-extra-source-files:  CHANGELOG.md
 
 executable haskToDo
   main-is:             Main.hs
   other-modules:    ToDoItem
   -- other-extensions:
   build-depends:
-    base >=4.13 && <4.14,
-    aeson >=2.1.0.0,
+    base ,
+    aeson ,
     bytestring,
     directory,
     readline,

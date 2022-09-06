@@ -20,7 +20,7 @@ usage = putStrLn "Usage: haskToDo [help/list/new/done/prune/...]"
 getToDoList :: String -> IO ToDoList
 getToDoList listName = do
   usrHome <- getUserHome
-  let fileName = usrHome <> "/.haskToDo/" <> listName <> ".json"
+  let fileName = usrHome ++ "/.haskToDo/" ++ listName ++ ".json"
   doesFileExist <- fileExist fileName
   if doesFileExist
     then do
@@ -34,7 +34,7 @@ getToDoList listName = do
 saveToDoList :: ToDoList -> IO ()
 saveToDoList list = do
   usrHome <- getUserHome
-  let fileName = usrHome <> "/.haskToDo/" <> (listTitle list) <> ".json"
+  let fileName = usrHome ++ "/.haskToDo/" ++ (listTitle list) ++ ".json"
   BS.writeFile fileName (encode list)
 
 showToDoList :: String -> IO ()
@@ -44,10 +44,10 @@ showToDoList listName = do
 
 getUserInput :: String -> IO String
 getUserInput query = do
-  mybLine <- readline (query <> "> ")
+  mybLine <- readline (query ++ "> ")
   case mybLine of
-    Nothing -> putStrLn ("Please provide a " <> query) >> getUserInput query
-    Just [] -> putStrLn (query <> " cant be empty!") >> getUserInput query
+    Nothing -> putStrLn ("Please provide a " ++ query) >> getUserInput query
+    Just [] -> putStrLn (query ++ " cant be empty!") >> getUserInput query
     Just input -> return input
 
 getConfirmation :: IO Bool
@@ -68,7 +68,7 @@ getUserHome = homeDirectory <$> (getUserEntryForID =<< getRealUserID)
 main :: IO ()
 main = do
   usr_home <- getUserHome
-  createDirectoryIfMissing False (usr_home <> "/.haskToDo")
+  createDirectoryIfMissing False (usr_home ++ "/.haskToDo")
 
   -- parse arguments
   args <- getArgs
@@ -106,7 +106,7 @@ main = do
           let orig_items = items lst
           let old_item = head $ filter (\x -> itemTitle x == titel) orig_items
           let new_item = old_item {status = Done}
-          let new_lst = lst {items = ((filter (\x -> itemTitle x /= titel) orig_items) <> [new_item])}
+          let new_lst = lst {items = ((filter (\x -> itemTitle x /= titel) orig_items) ++ [new_item])}
           saveToDoList new_lst
         else do
           -- just save to json file

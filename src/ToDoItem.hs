@@ -35,7 +35,7 @@ instance FromJSON ToDoList
 
 renderItem :: ToDoItem -> String
 renderItem ToDoItem {itemTitle, status, body} =
-  itemTitle <> "\t\t[" <> show status <> "]\n"
-    <> "----------------------"
-    <> "\n"
-    <> body
+  itemTitle ++ "\t\t[" ++ show status ++ "]\n"
+    ++ "----------------------"
+    ++ "\n"
+    ++ body
