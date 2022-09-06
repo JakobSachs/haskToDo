@@ -18,5 +18,5 @@ This has been exclusively made and ran on Linux so dont expect any support for O
 
 ## Authors
 This project is done soly by myself.
-- [Jakob Sachs](jakobsachs1999@gmail.com)
+- [Jakob Sachs](mailto:jakobsachs1999@gmail.com)
 ##  
